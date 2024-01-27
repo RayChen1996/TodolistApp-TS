@@ -9,6 +9,44 @@
     >
       新增
     </button>
+    <br />
+    <br />
+    <div class="container">
+      <div
+        class="btn-group"
+        role="group"
+        aria-label="Basic radio toggle button group"
+      >
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio1"
+          autocomplete="off"
+          checked
+        />
+        <label class="btn btn-outline-primary" for="btnradio1">全部</label>
+
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio2"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-primary" for="btnradio2">已完成</label>
+
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio3"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-primary" for="btnradio3">未完成</label>
+      </div>
+    </div>
+
     <table class="table">
       <thead>
         <tr>
@@ -30,7 +68,7 @@
               id=""
             />
           </th>
-          <td>{{ todo.content }}</td>
+          <td :class="{ strikethrough: todo.status }">{{ todo.content }}</td>
           <td>
             <button class="btn btn-info" @click="openModal" type="button">
               修改
@@ -101,12 +139,16 @@
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.strikethrough {
+  text-decoration: line-through;
+}
+</style>
 <script lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-const TodoData = reactive([])
+// const TodoData: any = reactive([])
 export default {
   setup() {
     const router = useRouter()
@@ -237,7 +279,7 @@ export default {
         })
     },
 
-    updateTodo(id) {
+    updateTodo(id: any) {
       const apiUrl = 'https://todolist-api.hexschool.io/'
       const sendData = {
         content: this.todoText,
@@ -280,7 +322,7 @@ export default {
     openModal() {
       this.isEditModalOpen = true
     },
-    updateTodoSwitch(id) {
+    updateTodoSwitch(id: any) {
       const apiUrl = 'https://todolist-api.hexschool.io/'
 
       fetch(apiUrl + 'todos/' + id + '/toggle', {

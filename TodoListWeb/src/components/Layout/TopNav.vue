@@ -2,9 +2,9 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <Router-link to="/">TodoList</Router-link>
-        </a>
+        <!-- <a class="navbar-brand" href="#"> -->
+        <Router-link to="/">TodoList</Router-link>
+        <!-- </a> -->
         <button
           class="navbar-toggler"
           type="button"
